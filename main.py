@@ -36,7 +36,7 @@ def startingGame():
 
             lastActionRow,lastActionColumn = gameBoard.updateAction(action,gamePlayer.userColor)
 
-            if gameBoard.winControl(gamePlayer.userColor):
+            if gameBoard.winControl(gamePlayer.userColor,lastActionRow,lastActionColumn):
                 helpers.finishPage(gamePlayer.userId)
                 return
             gamePlayer.reducePul()
@@ -54,5 +54,3 @@ def startingGame():
     
 
 startingGame()
-# finishPage(1)
-

@@ -55,8 +55,38 @@ class GameBoard:
                 f.write(f"\n{hamle}")
 
     def winControl(self,color,row,column):
-        pass
+        rowSlotList = self._getRowSlots(row)
+        if self._slotControl(rowSlotList,color):
+            return True
+        
+        columnSlotList = self._getColumnSlots(column)
+        if self._slotControl(columnSlotList,color):
+            return True
+        
+        # crossSlotList1, crossSlotList2 = self._getCrossSlots(column,row)
 
+        # if self._slotControl(crossSlotList1,color):
+        #     return True
+        
+        # if self._slotControl(crossSlotList2,color):
+        #     return True
+        
+        return False
+
+    def _slotControl(self,slotList,color):
+        numberOfSequentialSlots = 0
+        for slot in slotList:
+            if slot == color[0]:
+                numberOfSequentialSlots += 1
+                if numberOfSequentialSlots >= 4:
+                    return True
+                continue
+            else:    
+                numberOfSequentialSlots = 0
+        
+        if numberOfSequentialSlots >= 4:
+            return True
+        return False
                
     def _getRowSlots(self,row):
         return self.table[row]
@@ -71,18 +101,20 @@ class GameBoard:
         columnSlotsLeft = []
         columnSlotsRight = []
 
+        innerColumn = column
         #Oynanan taşın Sol üst ve Sağ alt çaprazlarının listesi
         for row in self.table[row::-1]:
-            if column > 9 or column < 0:
+            if innerColumn > 8 or innerColumn < 0:
                 break
-            columnSlotsLeft.append(row[column])
-            column -= 1
+            columnSlotsLeft.append(row[innerColumn])
+            innerColumn -= 1
 
+        innerColumn = column
         for row in self.table[row::]:
-            if column+1 > 8 or column+1 < 0:
+            if innerColumn+1 > 8 or innerColumn+1 < 0:
                 break
-            columnSlotsLeft.append(row[column+1])
-            column += 1
+            columnSlotsLeft.append(row[innerColumn+1])
+            innerColumn += 1
 
         #Oynanan taşın Sol Alt ve Sağ Üst çaprazlarının listesi
         for row in self.table[row::-1]:
