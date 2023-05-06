@@ -12,7 +12,6 @@ class Helpers:
                 print("\n Hatalı Giriş Yaptınız, Lütfen Tekrar Giriş Yapınız ")
                 continue
 
-
     def randomColor():
         randomNumber = random.random()
         if randomNumber < 0.5:
@@ -30,7 +29,7 @@ class Helpers:
         print("|        3- Çıkış Yap                |")  
         print("|------------------------------------|")     
 
-    def finishPage(wonPlayer=0):
+    def finishPage(wonPlayer=0,wonColor="Beyaz"):
 
         if wonPlayer == 0:
             print("|------------------------------------|")
@@ -42,5 +41,9 @@ class Helpers:
             print("|------------------------------------|")
             print("|           Oyun Sona Erdi           |")
             print("|------------------------------------|")
+            print("|           Kazanan Oyuncu:          |")
+            print("|------------------------------------|")
             print(f"|              {wonPlayer}. Oyuncu             |")
+            print("|------------------------------------|")
+            print(f"              {wonColor} Pul          ")
             print("|------------------------------------|")

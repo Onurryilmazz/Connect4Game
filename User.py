@@ -7,3 +7,9 @@ class User :
 
     def reducePul(self):
         self.userPul -= 1
+
+    def updatePul(self,pulValue):
+        self.userPul = pulValue
+
+    def printUserPulValue(self):
+        print(self.userPul)
