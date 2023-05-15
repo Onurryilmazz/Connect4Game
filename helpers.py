@@ -37,6 +37,12 @@ class Helpers:
             print("|------------------------------------|")
             print("|             BERABERLİK             |")
             print("|------------------------------------|")
+        elif wonPlayer == -1:
+            print("|------------------------------------|")
+            print("|    Bu Oyun Daha Önce Sona Erdi     |")
+            print("|------------------------------------|")
+            print(f"              {wonColor} Pul          ")
+            print("|------------------------------------|")
         else :
             print("|------------------------------------|")
             print("|           Oyun Sona Erdi           |")
@@ -47,3 +53,5 @@ class Helpers:
             print("|------------------------------------|")
             print(f"              {wonColor} Pul          ")
             print("|------------------------------------|")
+
+        _quitGame = input("\n Ekranı kapatmak için Enter tuşuna basınız. \n")

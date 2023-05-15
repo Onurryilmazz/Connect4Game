@@ -36,10 +36,10 @@ class GameBoard:
 
         with open("Hamle.txt","r") as f:
             actions = []
-            a = f.readlines()
-            for row in a:
-                rowTable = row.split()
-                actions.append(rowTable)
+            actionsLine = f.readlines()
+            for row in actionsLine:
+                action = row.split()
+                actions.append(action)
         return actions
 
     def createEmptyTable(self): 
@@ -96,7 +96,6 @@ class GameBoard:
         """
         Oyuncuların hamlesinin kazanma durumunu kontrol eden fonksiyon
         """
-
         rowSlotList = self._getRowSlots(row)
         if self._slotControl(rowSlotList,color):
             return True
@@ -238,3 +237,24 @@ class GameBoard:
 
         return colorRedSlot,colorBlueSlot,lastActionColor
         
+    def _getOldGameLastAction(self):
+    
+        with open("Hamle.txt","r") as f:
+            actions = f.readlines()
+            lastAction = actions[-1]
+
+        splitAction = lastAction.split("-")
+        lastActionColor = splitAction[1]
+        lastActionRow = splitAction[0][0]
+        lastActionColumn = splitAction[0][1]
+
+        return lastActionColor,int(lastActionRow)-1,int(lastActionColumn)-1
+    
+    def checkLastGameEndStatus(self):
+
+        lastActionColor,lastActionRow,lastActionColumn = self._getOldGameLastAction()
+        checkStatu = self.winControl(lastActionColor,lastActionRow,lastActionColumn)
+
+        if checkStatu:
+            return True
+        return False

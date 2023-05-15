@@ -43,12 +43,18 @@ def main():
 
     if selectedGame == "1":
 
-        print("\n<---- Eski Oyun Yükleniyor ---->\n"),  
-        oldGameValues = gameBoard.startOldGame()
+        print("\n<---- Eski Oyun Yükleniyor ---->\n"),
+
+        oldGameValues = gameBoard.startOldGame() 
+        
         user1Color = oldGameValues["user1Color"]
         user2Color = oldGameValues["user2Color"]
         user1Slot = oldGameValues["user1Slot"]
         user2Slot = oldGameValues["user2Slot"]
+
+        if gameBoard.checkLastGameEndStatus():
+            helpers.finishPage(wonPlayer=-1,wonColor=user2Color)
+            return 
 
         user1 = User(1,user1Color)
         user1.updatePul(user1Slot)
